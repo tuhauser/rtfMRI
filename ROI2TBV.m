@@ -37,7 +37,7 @@ if ~isfield(options,'shiftZ')
     options.shiftZ = -1;    % default value: -1 because TBV voxels start from 0
 end
 if ~isfield(options,'ROI_threshold')
-    options.ROI_threshold = 0.9;    % cutoff for selecting ROI (proportion of max)
+    options.ROI_threshold = 0.95;    % cutoff for selecting ROI (proportion of max)
 end
 if ~isfield(options,'out_fname')
     options.out_fname = 'newRoi.roi';
@@ -97,7 +97,7 @@ epi_idx = [];
 for v = 1:length(roi_vox)
     [closest,cval,err] = findcEucl(epi_XYZ,roi_vox(:,v));
     
-    if err > 1.5    % excludes voxels that are >1.5mm away from origin
+    if err > 1%1.5    % excludes voxels that are >1.5mm away from origin
         epi_idx(v) = nan;
     else
         epi_idx(v) = closest;
